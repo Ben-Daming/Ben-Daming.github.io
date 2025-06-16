@@ -1,19 +1,16 @@
-# GitHub Pages Site
+这是一个可 fork 的博客模板仓库，帮助你快速搭建自己的博客，可以参考我博客的[这篇文章]( https://lemonchann.github.io/create_blog_with_github_pages/ )详细指导搭建步骤。
 
-This project is a simple GitHub Pages site that serves as a starting point for creating a personal or project website.
+### 文章版权
 
-## Project Structure
+`_posts` 文件夹内所有文章版权归我所有，转载需联系我获得授权。
 
-- `index.html`: The main page of the website, containing the basic HTML structure and content.
-- `css/style.css`: This file contains the style definitions for the website, controlling the appearance and layout of the pages.
-- `js/script.js`: This file includes JavaScript code to implement interactive features on the page.
-- `assets/fonts`: This folder stores the font files used by the website.
-- `_config.yml`: This is the configuration file for GitHub Pages, containing basic settings and options for the site.
+### 致谢
 
-## Usage
+感谢Jekyll主题[LOFFER](https://fromendworld.github.io/LOFFER/)模提供了原始主题模板，我在其上进行的二次开发。
 
-To use this project, simply clone the repository and push it to your own GitHub account. You can then enable GitHub Pages in the repository settings to host your site.
+如果搭建过程中有什么问题，也可以扫码添加我的个人技术公众号讨论交流。
 
-## Customization
+**这是一个专注编程知识和资源分享的公众号，包含各类编程学习路线，让你在编程路上少走弯路**
 
-Feel free to modify the HTML, CSS, and JavaScript files to suit your needs. You can also add additional assets and update the `_config.yml` file for further customization.
+![公众号二维码](https://github.com/lemonchann/images/raw/master/gzh/%E6%96%87%E6%9C%AB%E6%8E%A8%E5%B9%BF%E6%96%87%E6%A1%88.png)
+
