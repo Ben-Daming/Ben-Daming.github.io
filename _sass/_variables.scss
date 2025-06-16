@@ -1,4 +1,3 @@
-
 //
 // VARIABLES
 //
@@ -32,12 +31,18 @@ $base-color: $oc-gray-8;
 $base-lighten-color: $oc-gray-6;
 $base-lightener-color: $oc-gray-4;
 
-$background-color: $oc-gray-0;
-$background-lighten-color: #f8f9fa6b;
+$primary: $oc-violet-6;
+$secondary: $oc-pink-5;
+$accent: $oc-orange-5;
 
-$text-color: $base-color;
-$link-color: $oc-blue-8;
-$link-lighten-color: $oc-blue-6;
+// 背景渐变
+$background-color: linear-gradient(135deg, $oc-violet-1 0%, $oc-pink-1 50%, $oc-orange-1 100%);
+$background-lighten-color: rgba(255, 255, 255, 0.8);
+
+// 文字
+$text-color: $oc-gray-8;
+$link-color: $oc-violet-7;
+$link-lighten-color: $oc-pink-6;
 $link-bghv-color: $oc-blue-0;
 $divider-color: $oc-gray-1;
 
