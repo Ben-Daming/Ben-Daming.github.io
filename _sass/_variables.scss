@@ -3,7 +3,7 @@
 //
 
 // Colors
-$blue: $oc-blue-8;
+$blue: $oc-blue-6; // 从 oc-blue-8 改为更亮的 oc-blue-6
 
 // Grays
 $black: #000;
@@ -27,44 +27,44 @@ $base-font-size: 16px;
 $small-font-size: 14px;
 
 // Colors
-$base-color: $oc-gray-8;
-$base-lighten-color: $oc-gray-6;
-$base-lightener-color: $oc-gray-4;
+$base-color: $oc-gray-7; // 从 oc-gray-8 改为稍浅的 oc-gray-7
+$base-lighten-color: $oc-gray-5; // 从 oc-gray-6 改为更浅的 oc-gray-5
+$base-lightener-color: $oc-gray-3; // 从 oc-gray-4 改为更浅的 oc-gray-3
 
-$primary: $oc-violet-6;
-$secondary: $oc-pink-5;
-$accent: $oc-orange-5;
+$primary: $oc-violet-5; // 从 oc-violet-6 改为更亮的 oc-violet-5
+$secondary: $oc-pink-4; // 从 oc-pink-5 改为更亮的 oc-pink-4
+$accent: $oc-orange-4; // 从 oc-orange-5 改为更亮的 oc-orange-4
 
-// 背景渐变
-$background-color: linear-gradient(135deg, $oc-violet-1 0%, $oc-pink-1 50%, $oc-orange-1 100%);
-$background-lighten-color: rgba(255, 255, 255, 0.8);
+// 背景渐变 - 使用更鲜艳的颜色
+$background-color: linear-gradient(135deg, $oc-violet-0 0%, $oc-pink-0 50%, $oc-orange-0 100%);
+$background-lighten-color: rgba(255, 255, 255, 0.7); // 稍微降低透明度以增强颜色
 
 // 文字
-$text-color: $oc-gray-8;
-$link-color: $oc-violet-7;
-$link-lighten-color: $oc-pink-6;
+$text-color: $oc-gray-7; // 从 oc-gray-8 改为稍浅的颜色
+$link-color: $oc-violet-6; // 从 oc-violet-7 改为更亮的颜色
+$link-lighten-color: $oc-pink-5; // 从 oc-pink-6 改为更亮的颜色
 $link-bghv-color: $oc-blue-0;
-$divider-color: $oc-gray-1;
+$divider-color: $oc-gray-2; // 从 oc-gray-1 改为稍深一点的颜色
 
-$error-color:$oc-blue-8;
+$error-color: $oc-red-6; // 从 oc-blue-8 改为红色系更醒目
 
-$table-border-color: $oc-gray-2;
-$table-background-color: $oc-gray-1;
+$table-border-color: $oc-gray-3; // 从 oc-gray-2 改为稍深的颜色
+$table-background-color: $oc-gray-0; // 保持浅色背景
 
 $blockquote-color: $base-lighten-color;
-$blockquote-border-color: $oc-gray-3;
+$blockquote-border-color: $oc-violet-3; // 从 oc-gray-3 改为紫色系
 
-$footnote-link-border-color: $oc-gray-1;
-$footnote-link-background-over-color: $oc-gray-1;
+$footnote-link-border-color: $oc-gray-2; // 从 oc-gray-1 改为稍深的颜色
+$footnote-link-background-over-color: $oc-violet-0; // 从 oc-gray-1 改为紫色系
 
 // $selection-color: $oc-black;
-$selection-background-color: $oc-gray-3;
+$selection-background-color: $oc-violet-2; // 从 oc-gray-3 改为紫色系
 
-$tag-index-label-background-color: $oc-gray-2;
-$tag-index-count-background-color: #868e961a;
+$tag-index-label-background-color: $oc-violet-1; // 从 oc-gray-2 改为紫色系
+$tag-index-count-background-color: rgba(121, 80, 242, 0.1); // 改为紫色系半透明
 
-$footer-border-color: $oc-gray-2;
-$footer-background-color: $oc-gray-0;
+$footer-border-color: $oc-violet-1; // 从 oc-gray-2 改为紫色系
+$footer-background-color: $oc-violet-0; // 从 oc-gray-0 改为紫色系
 
 // List
 $li-bottom-space: 0.4em;
