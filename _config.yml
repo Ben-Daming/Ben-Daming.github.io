@@ -63,7 +63,7 @@ disqus: # fromendworld
 
 # Gitalk
 gitalk:
-  clientID:Ov23liythOCeraU6pdOl
+  clientID: Ov23liythOCeraU6pdOl
   clientSecret: e0cf4be6b32a4a2272c6b8f5c545c365bf7611a8
 
   repo: Ben-Daming.github.io
