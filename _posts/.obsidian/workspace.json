@@ -11,10 +11,14 @@
             "id": "7f4a12d714fc4562",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "2025-7-13-图灵完备乘法器的构建.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "2025-7-13-图灵完备乘法器的构建"
             }
           }
         ]
@@ -164,6 +168,8 @@
   "active": "7f4a12d714fc4562",
   "lastOpenFiles": [
     "2025-7-11-暑假规划.md",
-    "2025-6-16-svd可视化.md"
+    "2025-6-16-git.md",
+    "2025-6-16-svd可视化.md",
+    "2025-7-13-图灵完备乘法器的构建.md"
   ]
 }
