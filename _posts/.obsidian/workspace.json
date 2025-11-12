@@ -20,8 +20,33 @@
               "icon": "lucide-file",
               "title": "2025-7-25-并行加法器"
             }
+          },
+          {
+            "id": "4f74fa4957329f10",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.9.12"
+              },
+              "icon": "lucide-book-up",
+              "title": "版本说明 1.9.12"
+            }
+          },
+          {
+            "id": "a1898293b3906e7d",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.9.14"
+              },
+              "icon": "lucide-book-up",
+              "title": "版本说明 1.9.14"
+            }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -157,6 +182,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -165,7 +191,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "7f4a12d714fc4562",
+  "active": "a1898293b3906e7d",
   "lastOpenFiles": [
     "2025-7-19-走迷宫的贪心法理解.md",
     "2025-7-13-图灵完备乘法器的构建.md",
