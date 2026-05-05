@@ -1,0 +1,73 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import SearchBox from '../components/SearchBox.astro';
+import TagPill from '../components/TagPill.astro';
+import { siteConfig } from '../site.config';
+import { collectTags, formatDate, getExcerpt, getPostTags, getPostUrl, sortPosts } from '../lib/blog';
+
+const posts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+const [featured, ...restPosts] = posts;
+const topTags = collectTags(posts).slice(0, 8);
+const searchItems = posts.map((post) => ({
+  title: post.data.title,
+  url: getPostUrl(post),
+  date: formatDate(post.data.date),
+  tags: getPostTags(post),
+  excerpt: getExcerpt(post, 120)
+}));
+---
+<BaseLayout>
+  <section class="home-hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Personal Research Log</p>
+      <h1>把学习过程写成可以复用的路径。</h1>
+      <p>{siteConfig.description}</p>
+      <div class="hero-actions">
+        <a href="/archive/">浏览归档</a>
+        <a href="/about/">关于我</a>
+      </div>
+    </div>
+    <div class="hero-orbit" aria-hidden="true">
+      <span>CS</span>
+      <span>Math</span>
+      <span>Build</span>
+    </div>
+  </section>
+
+  <SearchBox posts={searchItems} />
+
+  {featured && (
+    <section class="featured-section" aria-labelledby="featured-title">
+      <div class="section-heading">
+        <p class="eyebrow">Latest</p>
+        <h2 id="featured-title">最近更新</h2>
+      </div>
+      <PostCard post={featured} featured />
+    </section>
+  )}
+
+  <section class="content-grid" aria-label="文章列表和标签">
+    <div class="post-list">
+      <div class="section-heading">
+        <p class="eyebrow">Notes</p>
+        <h2>所有文章</h2>
+      </div>
+      {restPosts.length > 0 ? restPosts.map((post) => <PostCard post={post} />) : <p>还没有更多文章。</p>}
+    </div>
+
+    <aside class="home-aside">
+      <div class="aside-card">
+        <p class="eyebrow">Tags</p>
+        <h2>常写主题</h2>
+        <div class="tag-cloud">
+          {topTags.map(({ tag, posts }) => <TagPill tag={tag} count={posts.length} />)}
+        </div>
+      </div>
+      <div class="aside-card signature-card">
+        <p>“先把问题写清楚，再考虑把答案写漂亮。”</p>
+      </div>
+    </aside>
+  </section>
+</BaseLayout>

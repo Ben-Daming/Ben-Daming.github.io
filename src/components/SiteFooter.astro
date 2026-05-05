@@ -1,0 +1,15 @@
+---
+import { siteConfig } from '../site.config';
+---
+<footer class="site-footer">
+  <div class="footer-panel">
+    <p class="footer-title">{siteConfig.title}</p>
+    <p>在这里整理学习路径、技术实验和偶尔冒出来的想法。</p>
+    <div class="footer-links" aria-label="社交链接">
+      <a href={`https://github.com/${siteConfig.github}`}>GitHub</a>
+      <a href={`https://zhihu.com/people/${siteConfig.zhihu}`}>知乎</a>
+      <a href={`mailto:${siteConfig.email}`}>Email</a>
+      <a href="/feed.xml">RSS</a>
+    </div>
+  </div>
+</footer>

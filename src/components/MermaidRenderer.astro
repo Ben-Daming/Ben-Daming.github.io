@@ -1,0 +1,84 @@
+<script>
+  const mermaidBlockSelector = '.prose-content pre[data-language="mermaid"]';
+  const mermaidCodeSelector = '.prose-content code.language-mermaid';
+
+  function findMermaidBlocks() {
+    const blocks = new Set(document.querySelectorAll(mermaidBlockSelector));
+
+    for (const code of document.querySelectorAll(mermaidCodeSelector)) {
+      const block = code.closest('pre');
+      if (block) blocks.add(block);
+    }
+
+    return blocks;
+  }
+
+  function createMermaidNodes() {
+    const nodes = [];
+
+    for (const block of findMermaidBlocks()) {
+      const source = block.textContent?.trim();
+      if (!source) continue;
+
+      const figure = document.createElement('figure');
+      figure.className = 'mermaid-diagram';
+      figure.setAttribute('aria-label', 'Mermaid diagram');
+      figure.setAttribute('role', 'img');
+
+      const diagram = document.createElement('div');
+      diagram.className = 'mermaid';
+      diagram.textContent = source;
+
+      figure.appendChild(diagram);
+      block.replaceWith(figure);
+      nodes.push(diagram);
+    }
+
+    return nodes;
+  }
+
+  async function renderMermaid() {
+    const nodes = createMermaidNodes();
+    if (!nodes.length) return;
+
+    const { default: mermaid } = await import('mermaid');
+
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: 'strict',
+      theme: 'base',
+      themeVariables: {
+        background: 'transparent',
+        primaryColor: '#fffaf0',
+        primaryTextColor: '#17201b',
+        primaryBorderColor: '#0f766e',
+        lineColor: '#0b4f4a',
+        secondaryColor: '#d8efe4',
+        tertiaryColor: '#efe3cf',
+        clusterBkg: '#f8f2e8',
+        clusterBorder: '#8d9a91',
+        edgeLabelBackground: '#fffaf0',
+        fontFamily: 'Avenir Next, Trebuchet MS, Noto Sans SC, sans-serif'
+      },
+      flowchart: {
+        curve: 'basis',
+        htmlLabels: true
+      }
+    });
+
+    try {
+      await mermaid.run({ nodes });
+    } catch (error) {
+      console.error('Failed to render Mermaid diagram:', error);
+      for (const node of nodes) {
+        node.closest('.mermaid-diagram')?.classList.add('mermaid-diagram-error');
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderMermaid, { once: true });
+  } else {
+    void renderMermaid();
+  }
+</script>

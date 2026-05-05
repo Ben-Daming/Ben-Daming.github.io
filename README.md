@@ -1,9 +1,66 @@
-通过可 fork 的博客模板仓库快速搭建的博客，可以参考[这篇文章]( https://lemonchann.github.io/create_blog_with_github_pages/ )
-### 文章版权
+# Ben Daming's blog
 
-`_posts` 文件夹内所有文章版权归我所有，转载需联系我获得授权。
+This repository now runs on Astro and Tailwind CSS.
 
-### 致谢
+## Stack
 
-感谢Jekyll主题[LOFFER](https://fromendworld.github.io/LOFFER/)模提供了原始主题模板，和lemonchann在其上进行的二次开发。
+- Astro
+- Tailwind CSS 4
+- Markdown content collections
+- KaTeX via `remark-math` + `rehype-katex`
+- Obsidian-flavored Markdown extensions for `[[wiki links]]`, `![[embeds]]`, callouts, and `==highlight==`
 
+## Local development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the dev server:
+
+```bash
+npm run dev -- --host
+```
+
+Build the site:
+
+```bash
+npm run build
+```
+
+Run Astro checks:
+
+```bash
+npm run check
+```
+
+## Content
+
+- Blog posts live in `src/content/blog/`
+- Static assets live in `public/`
+- Main layouts and components live in `src/layouts/` and `src/components/`
+- New posts must include frontmatter with at least `title` and `date`
+
+Example post frontmatter:
+
+```md
+---
+title: 五子棋项目开发文档
+date: 2025-12-01
+tags:
+  - project
+  - Gomoku
+toc: true
+---
+```
+
+## Deployment
+
+GitHub Pages deployment is configured in `.github/workflows/deploy.yml`.
+Push to the `main` branch to trigger the deploy workflow.
+
+## Copyright
+
+All posts under `src/content/blog/` are original content by the repository owner. Please ask for permission before reposting.

@@ -1,0 +1,76 @@
+---
+interface SearchItem {
+  title: string;
+  url: string;
+  date: string;
+  tags: string[];
+  excerpt: string;
+}
+
+interface Props {
+  posts: SearchItem[];
+}
+
+const { posts } = Astro.props;
+---
+<section class="search-panel" aria-label="站内搜索">
+  <label for="post-search">搜索文章</label>
+  <div class="search-input-wrap">
+    <input id="post-search" type="search" placeholder="试试 Git、SVD、加法器..." autocomplete="off" data-search-input />
+  </div>
+  <div class="search-results" data-search-results aria-live="polite"></div>
+</section>
+
+<script is:inline define:vars={{ posts }}>
+  const input = document.querySelector('[data-search-input]');
+  const results = document.querySelector('[data-search-results]');
+
+  const escapeHtml = (value) => value.replace(/[&<>'"]/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;'
+  }[char]));
+
+  const normalize = (value) => value.toLocaleLowerCase('zh-CN').trim();
+
+  function render(items, query) {
+    if (!query) {
+      results.innerHTML = '';
+      return;
+    }
+
+    if (items.length === 0) {
+      results.innerHTML = '<p class="empty-result">没有找到相关文章。</p>';
+      return;
+    }
+
+    results.innerHTML = items.map((item) => `
+      <a class="search-result" href="${item.url}">
+        <span>${escapeHtml(item.title)}</span>
+        <small>${escapeHtml(item.date)} · ${escapeHtml(item.tags.join(' / '))}</small>
+        <em>${escapeHtml(item.excerpt)}</em>
+      </a>
+    `).join('');
+  }
+
+  input?.addEventListener('input', (event) => {
+    const query = normalize(event.target.value);
+    const keywords = query.split(/\s+/).filter(Boolean);
+
+    const matched = posts
+      .map((item) => {
+        const haystack = normalize(`${item.title} ${item.tags.join(' ')} ${item.excerpt}`);
+        const matchedAll = keywords.every((keyword) => haystack.includes(keyword));
+        const score = haystack.startsWith(query) ? 0 : item.title.toLocaleLowerCase('zh-CN').includes(query) ? 1 : 2;
+        return matchedAll ? { item, score } : null;
+      })
+      .filter(Boolean)
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 8)
+      .map((entry) => entry.item);
+
+    render(matched, query);
+  });
+</script>

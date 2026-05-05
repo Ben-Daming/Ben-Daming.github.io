@@ -1,0 +1,15 @@
+---
+import { getTagUrl } from '../lib/blog';
+
+interface Props {
+  tag: string;
+  count?: number;
+}
+
+const { tag, count } = Astro.props;
+const href = getTagUrl(tag);
+---
+<a class="tag-pill" href={href}>
+  <span>{tag}</span>
+  {typeof count === 'number' && <small>{count}</small>}
+</a>

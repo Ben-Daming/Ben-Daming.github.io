@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagPill from '../../components/TagPill.astro';
+import { collectTags, formatDate, getPostUrl, getTagDomId, sortPosts } from '../../lib/blog';
+
+const posts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+const tags = collectTags(posts);
+---
+<BaseLayout title="标签" description="按标签浏览文章。">
+  <section class="page-hero compact">
+    <p class="eyebrow">Tags</p>
+    <h1>标签</h1>
+    <p>从主题切入文章。</p>
+  </section>
+
+  <section class="tag-index">
+    <div class="tag-cloud big">
+      {tags.map(({ tag, posts }) => <TagPill tag={tag} count={posts.length} />)}
+    </div>
+
+    <div class="tag-sections">
+      {tags.map(({ tag, posts }) => (
+        <section class="tag-section" aria-labelledby={getTagDomId(tag)}>
+          <h2 id={getTagDomId(tag)}>{tag}</h2>
+          <ul>
+            {posts.map((post) => (
+              <li>
+                <a href={getPostUrl(post)}>{post.data.title}</a>
+                <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

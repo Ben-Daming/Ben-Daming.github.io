@@ -1,0 +1,25 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const headings = Astro.props.headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+---
+{headings.length > 0 && (
+  <aside class="toc-panel" aria-label="文章目录">
+    <p>目录</p>
+    <ol>
+      {headings.map((heading) => (
+        <li class={`depth-${heading.depth}`}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ol>
+  </aside>
+)}

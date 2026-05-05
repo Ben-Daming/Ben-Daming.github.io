@@ -1,0 +1,58 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import MermaidRenderer from '../components/MermaidRenderer.astro';
+import PostMeta from '../components/PostMeta.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import type { BlogPost } from '../lib/blog';
+import { getExcerpt, getPostUrl } from '../lib/blog';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  post: BlogPost;
+  headings: Heading[];
+  older?: BlogPost;
+  newer?: BlogPost;
+}
+
+const { post, headings, older, newer } = Astro.props;
+const description = getExcerpt(post, 150);
+const hasMermaid = /```mermaid/i.test(post.body ?? '');
+---
+<BaseLayout title={post.data.title} description={description} bodyClass="post-page">
+  <div class="post-layout">
+    <article class="post-article">
+      <header class="post-hero">
+        <p class="eyebrow">Article</p>
+        <h1>{post.data.title}</h1>
+        <PostMeta post={post} />
+      </header>
+
+      <div class="prose-content">
+        <slot />
+      </div>
+
+      <nav class="post-navigation" aria-label="文章导航">
+        {older ? (
+          <a href={getPostUrl(older)}>
+            <span>较早一篇</span>
+            <strong>{older.data.title}</strong>
+          </a>
+        ) : <span></span>}
+        {newer ? (
+          <a href={getPostUrl(newer)}>
+            <span>较新一篇</span>
+            <strong>{newer.data.title}</strong>
+          </a>
+        ) : <span></span>}
+      </nav>
+    </article>
+
+    <TableOfContents headings={headings} />
+  </div>
+  {hasMermaid && <MermaidRenderer />}
+</BaseLayout>

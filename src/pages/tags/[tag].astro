@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { collectTags, sortPosts } from '../../lib/blog';
+
+export async function getStaticPaths() {
+  const posts = sortPosts(await getCollection('blog', ({ data }) => !data.draft));
+  return collectTags(posts).map(({ tag, slug, posts }) => ({
+    params: { tag: slug },
+    props: { tag, posts }
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+<BaseLayout title={`标签：${tag}`} description={`浏览标签 ${tag} 下的文章。`}>
+  <section class="page-hero compact">
+    <p class="eyebrow">Tag</p>
+    <h1>{tag}</h1>
+    <p>{posts.length} 篇文章</p>
+  </section>
+
+  <section class="post-list single-column">
+    {posts.map((post) => <PostCard post={post} />)}
+  </section>
+</BaseLayout>

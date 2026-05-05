@@ -1,0 +1,20 @@
+---
+import TagPill from './TagPill.astro';
+import type { BlogPost } from '../lib/blog';
+import { formatDate, getPostTags } from '../lib/blog';
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+const tags = getPostTags(post);
+---
+<div class="post-meta">
+  <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+  {tags.length > 0 && (
+    <div class="meta-tags">
+      {tags.map((tag) => <TagPill tag={tag} />)}
+    </div>
+  )}
+</div>
